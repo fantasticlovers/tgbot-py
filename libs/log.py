@@ -32,11 +32,12 @@ log_path.mkdir(parents=True, exist_ok=True)
 log_file = log_path / "Mytgbot.log"
 
 if not logger.handlers:
-    file_handler = RotatingFileHandler(
+    _file_handler = RotatingFileHandler(          # 改成 _file_handler
         log_file, maxBytes=10 * 1024 * 1024, backupCount=10, encoding="utf-8"
     )
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
+    _file_handler.setFormatter(formatter)
+    logger.addHandler(_file_handler)
+
     utf8_stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
     console_handler = logging.StreamHandler(utf8_stdout)
     console_handler.setFormatter(formatter)
